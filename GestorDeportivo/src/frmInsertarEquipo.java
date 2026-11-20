@@ -39,7 +39,7 @@ public class frmInsertarEquipo extends javax.swing.JFrame {
         ImageIcon uno=new ImageIcon(this.getClass().getResource("/imagenes/equipo.png"));
         JLabel fondo= new JLabel(); fondo.setIcon(uno);
         getLayeredPane().add(fondo,JLayeredPane.FRAME_CONTENT_LAYER);
-        fondo.setBounds(0,0,uno.getIconWidth(),u­no.getIconHeight());
+        fondo.setBounds(0,0,uno.getIconWidth(),uno.getIconHeight());
         Mostrar();
         
     }
@@ -53,7 +53,7 @@ public class frmInsertarEquipo extends javax.swing.JFrame {
         try{
             Class.forName("org.postgresql.Driver");
             
-            cn = DriverManager.getConnection(url,"postgres", password);
+            cn = ConexionBD.conectar(password);
             
             if(cn != null){
             
@@ -93,7 +93,7 @@ public class frmInsertarEquipo extends javax.swing.JFrame {
         try{
             Class.forName("org.postgresql.Driver");
             
-            cn = DriverManager.getConnection(url,"postgres", password);
+            cn = ConexionBD.conectar(password);
             
             if(cn != null){
             System.out.println("Conectado a BD");
@@ -198,7 +198,7 @@ public class frmInsertarEquipo extends javax.swing.JFrame {
 
         try {
             Class.forName("org.postgresql.Driver");
-            cn = DriverManager.getConnection(url, "postgres", password);
+            cn = ConexionBD.conectar(password);
             ps = cn.prepareStatement("SELECT * FROM public.equipo WHERE \"NOMBRE\" =  '" + id + "'");
             rs = ps.executeQuery();
             rsm = rs.getMetaData();

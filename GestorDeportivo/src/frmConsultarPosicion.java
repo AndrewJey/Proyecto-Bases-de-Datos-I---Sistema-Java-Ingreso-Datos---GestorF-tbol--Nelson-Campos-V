@@ -36,7 +36,7 @@ public class frmConsultarPosicion extends javax.swing.JFrame {
         ImageIcon uno=new ImageIcon(this.getClass().getResource("/imagenes/pic1.jpg"));
         JLabel fondo= new JLabel(); fondo.setIcon(uno);
         getLayeredPane().add(fondo,JLayeredPane.FRAME_CONTENT_LAYER);
-        fondo.setBounds(0,0,uno.getIconWidth(),u­no.getIconHeight());
+        fondo.setBounds(0,0,uno.getIconWidth(),uno.getIconHeight());
     }
 public void Mostrar() {
         if (cn != null) {
@@ -48,7 +48,7 @@ public void Mostrar() {
         try {
             Class.forName("org.postgresql.Driver");
 
-            cn = DriverManager.getConnection(url, "postgres", password);
+            cn = ConexionBD.conectar(password);
 
             if (cn != null) {
 
@@ -73,7 +73,7 @@ public void Mostrar() {
         String password = "995511";
         try {
             Class.forName("org.postgresql.Driver");
-            cn = DriverManager.getConnection(url, "postgres", password);
+            cn = ConexionBD.conectar(password);
             ps = cn.prepareStatement("SELECT \"POSICION\" FROM public.posicion");
             rs = ps.executeQuery();
             rsm = rs.getMetaData();
@@ -125,7 +125,7 @@ public void Mostrar() {
         String password = "995511";
         try {
             Class.forName("org.postgresql.Driver");
-            cn = DriverManager.getConnection(url, "postgres", password);
+            cn = ConexionBD.conectar(password);
             ps = cn.prepareStatement("SELECT \"POSICION\" FROM public.posicion WHERE \"POSICION\" = '" + nombre + "'");
             rs = ps.executeQuery();
             rsm = rs.getMetaData();
@@ -154,7 +154,7 @@ public void Mostrar() {
         String password = "995511";
         try {
             Class.forName("org.postgresql.Driver");
-            cn = DriverManager.getConnection(url, "postgres", password);
+            cn = ConexionBD.conectar(password);
             ps = cn.prepareStatement("SELECT \"ID\", \"NOMBRE\", \"APELLIDOS\", \"NUMERO\", \"EDAD\", \"PAIS\", \"TELEFONO\", \"CORREO\", \"EQUIPO\", \"POSICION\", \"ESTADO\" FROM public.jugador  WHERE \"POSICION\" = '" + estadio + "' AND  \"ESTADO\" = '" + estados + "'");
             rs = ps.executeQuery();
             rsm = rs.getMetaData();

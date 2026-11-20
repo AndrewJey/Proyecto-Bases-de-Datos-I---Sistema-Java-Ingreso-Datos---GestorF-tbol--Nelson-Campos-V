@@ -27,7 +27,7 @@ public class frmIndex extends javax.swing.JFrame {
         ImageIcon uno=new ImageIcon(this.getClass().getResource("/imagenes/index.jpg"));
         JLabel fondo= new JLabel(); fondo.setIcon(uno);
         getLayeredPane().add(fondo,JLayeredPane.FRAME_CONTENT_LAYER);
-        fondo.setBounds(0,0,uno.getIconWidth(),u­no.getIconHeight());
+        fondo.setBounds(0,0,uno.getIconWidth(),uno.getIconHeight());
     }
 
     /**

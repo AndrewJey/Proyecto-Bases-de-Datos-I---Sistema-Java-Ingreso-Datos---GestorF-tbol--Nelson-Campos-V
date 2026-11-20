@@ -37,7 +37,7 @@ public class frmEliminarEstadio extends javax.swing.JFrame {
         ImageIcon uno=new ImageIcon(this.getClass().getResource("/imagenes/pic1.jpg"));
         JLabel fondo= new JLabel(); fondo.setIcon(uno);
         getLayeredPane().add(fondo,JLayeredPane.FRAME_CONTENT_LAYER);
-        fondo.setBounds(0,0,uno.getIconWidth(),u­no.getIconHeight());
+        fondo.setBounds(0,0,uno.getIconWidth(),uno.getIconHeight());
     }
 
     public void Mostrar() {
@@ -50,7 +50,7 @@ public class frmEliminarEstadio extends javax.swing.JFrame {
         try {
             Class.forName("org.postgresql.Driver");
 
-            cn = DriverManager.getConnection(url, "postgres", password);
+            cn = ConexionBD.conectar(password);
 
             if (cn != null) {
 
@@ -76,7 +76,7 @@ public class frmEliminarEstadio extends javax.swing.JFrame {
         String password = "995511";
         try {
             Class.forName("org.postgresql.Driver");
-            cn = DriverManager.getConnection(url, "postgres", password);
+            cn = ConexionBD.conectar(password);
             ps = cn.prepareStatement("SELECT \"NOMBRE\", \"CAPACIDAD\" FROM public.estadio");
             rs = ps.executeQuery();
             rsm = rs.getMetaData();
@@ -210,7 +210,7 @@ public class frmEliminarEstadio extends javax.swing.JFrame {
         String password = "995511";
         try {
             Class.forName("org.postgresql.Driver");
-            cn = DriverManager.getConnection(url, "postgres", password);
+            cn = ConexionBD.conectar(password);
             ps = cn.prepareStatement("SELECT \"NOMBRE\", \"CAPACIDAD\" FROM public.estadio WHERE \"NOMBRE\" = '" + nombre + "'");
             rs = ps.executeQuery();
             rsm = rs.getMetaData();

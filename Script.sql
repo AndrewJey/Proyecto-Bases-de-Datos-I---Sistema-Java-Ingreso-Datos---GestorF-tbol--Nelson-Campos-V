@@ -1,6 +1,6 @@
 ﻿-- Creación de DB: "GestorDeportivo"
 
-CREATE DATABASE "GestorDeporfdhgtivo"
+CREATE DATABASE "GestorDeportivo"
   WITH OWNER = postgres;
 
 
@@ -8,14 +8,12 @@ CREATE DATABASE "GestorDeporfdhgtivo"
 
 -- Creación de tabla: campeonato
 
-CREATE TABLE public.campeonato
+CREATE TABLE IF NOT EXISTS public.campeonato
 (
   "NOMBRE" text NOT NULL,
   CONSTRAINT campeonato_pkey PRIMARY KEY ("NOMBRE")
 )
-WITH (
-  OIDS=FALSE
-);
+;
 ALTER TABLE public.campeonato
   OWNER TO postgres;
 
@@ -24,14 +22,12 @@ ALTER TABLE public.campeonato
 
 -- Creación de tabla: posicion
 
-CREATE TABLE public.posicion
+CREATE TABLE IF NOT EXISTS public.posicion
 (
   "POSICION" text NOT NULL,
   CONSTRAINT posicion_pkey PRIMARY KEY ("POSICION")
 )
-WITH (
-  OIDS=FALSE
-);
+;
 ALTER TABLE public.posicion
   OWNER TO postgres;
 
@@ -40,15 +36,13 @@ ALTER TABLE public.posicion
 
 -- Creación de tabla: estadio
 
-CREATE TABLE public.estadio
+CREATE TABLE IF NOT EXISTS public.estadio
 (
   "NOMBRE" text NOT NULL,
   "CAPACIDAD" numeric,
   CONSTRAINT estadio_pkey PRIMARY KEY ("NOMBRE")
 )
-WITH (
-  OIDS=FALSE
-);
+;
 ALTER TABLE public.estadio
   OWNER TO postgres;
 
@@ -57,7 +51,7 @@ ALTER TABLE public.estadio
 
 -- Creación de tabla: equipo
 
-CREATE TABLE public.equipo
+CREATE TABLE IF NOT EXISTS public.equipo
 (
   "NOMBRE" text NOT NULL,
   "ESTADIO" text,
@@ -70,9 +64,7 @@ CREATE TABLE public.equipo
       REFERENCES public.estadio ("NOMBRE") MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE
 )
-WITH (
-  OIDS=FALSE
-);
+;
 ALTER TABLE public.equipo
   OWNER TO postgres;
 
@@ -81,7 +73,7 @@ ALTER TABLE public.equipo
 
 -- Creación de tabla: entrenador
 
-CREATE TABLE public.entrenador
+CREATE TABLE IF NOT EXISTS public.entrenador
 (
   "ID" integer NOT NULL,
   "NOMBRE" text,
@@ -97,9 +89,7 @@ CREATE TABLE public.entrenador
       REFERENCES public.equipo ("NOMBRE") MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE
 )
-WITH (
-  OIDS=FALSE
-);
+;
 ALTER TABLE public.entrenador
   OWNER TO postgres;
 
@@ -108,7 +98,7 @@ ALTER TABLE public.entrenador
 
 -- Creación de tabla: jugador
 
-CREATE TABLE public.jugador
+CREATE TABLE IF NOT EXISTS public.jugador
 (
   "ID" integer NOT NULL,
   "NOMBRE" text,
@@ -129,8 +119,6 @@ CREATE TABLE public.jugador
       REFERENCES public.posicion ("POSICION") MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE
 )
-WITH (
-  OIDS=FALSE
-);
+;
 ALTER TABLE public.jugador
   OWNER TO postgres;

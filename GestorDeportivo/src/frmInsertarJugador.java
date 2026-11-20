@@ -36,7 +36,7 @@ Connection cn;
         ImageIcon uno=new ImageIcon(this.getClass().getResource("/imagenes/jugador.png"));
         JLabel fondo= new JLabel(); fondo.setIcon(uno);
         getLayeredPane().add(fondo,JLayeredPane.FRAME_CONTENT_LAYER);
-        fondo.setBounds(0,0,uno.getIconWidth(),u­no.getIconHeight());
+        fondo.setBounds(0,0,uno.getIconWidth(),uno.getIconHeight());
         Mostrar();
     }
     public void Mostrar(){
@@ -49,7 +49,7 @@ Connection cn;
         try{
             Class.forName("org.postgresql.Driver");
             
-            cn = DriverManager.getConnection(url,"postgres", password);
+            cn = ConexionBD.conectar(password);
             
             if(cn != null){
             
@@ -88,7 +88,7 @@ Connection cn;
         try{
             Class.forName("org.postgresql.Driver");
             
-            cn = DriverManager.getConnection(url,"postgres", password);
+            cn = ConexionBD.conectar(password);
             
             if(cn != null){
             System.out.println("Conectado a BD");
@@ -349,7 +349,7 @@ Connection cn;
 
             try {
                 Class.forName("org.postgresql.Driver");
-                cn = DriverManager.getConnection(url, "postgres", password);
+                cn = ConexionBD.conectar(password);
                 ps = cn.prepareStatement("SELECT * FROM public.jugador WHERE \"ID\" =  '" + id + "'");
                 rs = ps.executeQuery();
                 rsm = rs.getMetaData();

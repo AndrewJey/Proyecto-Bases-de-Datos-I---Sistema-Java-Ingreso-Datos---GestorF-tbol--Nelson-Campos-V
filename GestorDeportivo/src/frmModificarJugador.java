@@ -39,7 +39,7 @@ Connection cn;
         ImageIcon uno=new ImageIcon(this.getClass().getResource("/imagenes/pic1.jpg"));
         JLabel fondo= new JLabel(); fondo.setIcon(uno);
         getLayeredPane().add(fondo,JLayeredPane.FRAME_CONTENT_LAYER);
-        fondo.setBounds(0,0,uno.getIconWidth(),u­no.getIconHeight());
+        fondo.setBounds(0,0,uno.getIconWidth(),uno.getIconHeight());
         txtId.setText("Jugador");
     }
 public void Mostrar() {
@@ -52,7 +52,7 @@ public void Mostrar() {
         try {
             Class.forName("org.postgresql.Driver");
 
-            cn = DriverManager.getConnection(url, "postgres", password);
+            cn = ConexionBD.conectar(password);
 
             if (cn != null) {
 
@@ -97,7 +97,7 @@ public void Mostrar() {
         String password = "995511";
         try {
             Class.forName("org.postgresql.Driver");
-            cn = DriverManager.getConnection(url, "postgres", password);
+            cn = ConexionBD.conectar(password);
             ps = cn.prepareStatement("SELECT \"ID\", \"NOMBRE\", \"APELLIDOS\", \"NUMERO\", \"EDAD\", \"PAIS\", \"TELEFONO\", \"CORREO\", \"EQUIPO\", \"POSICION\", \"ESTADO\" FROM public.jugador WHERE  \"ESTADO\" = '" + estados + "'");
             rs = ps.executeQuery();
             rsm = rs.getMetaData();
@@ -138,7 +138,7 @@ public void Mostrar() {
         String password = "995511";
         try {
             Class.forName("org.postgresql.Driver");
-            cn = DriverManager.getConnection(url, "postgres", password);
+            cn = ConexionBD.conectar(password);
             ps = cn.prepareStatement("SELECT \"ID\", \"NOMBRE\", \"APELLIDOS\", \"NUMERO\", \"EDAD\", \"PAIS\", \"TELEFONO\", \"CORREO\", \"EQUIPO\", \"POSICION\", \"ESTADO\" FROM public.jugador WHERE \"ID\" = '" + nombre + "' AND  \"ESTADO\" = '" + estados + "'");
             rs = ps.executeQuery();
             rsm = rs.getMetaData();
@@ -504,7 +504,7 @@ public void Conexion(){
         try{
             Class.forName("org.postgresql.Driver");
             
-            cn = DriverManager.getConnection(url,"postgres", password);
+            cn = ConexionBD.conectar(password);
             
             if(cn != null){
             System.out.println("Conectado a BD");
@@ -526,7 +526,7 @@ public void Conexion(){
 
             try {
                 Class.forName("org.postgresql.Driver");
-                cn = DriverManager.getConnection(url, "postgres", password);
+                cn = ConexionBD.conectar(password);
                 ps = cn.prepareStatement("SELECT * FROM public.jugador WHERE \"ID\" =  '" + id + "'");
                 rs = ps.executeQuery();
                 rsm = rs.getMetaData();
